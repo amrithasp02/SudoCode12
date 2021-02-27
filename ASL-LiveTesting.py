@@ -39,18 +39,15 @@ while True:
     if not ret:
         continue
 
-    # rectangle for user to play
-    #cv2.rectangle(frame, (100, 100), (500, 500), (255, 255, 255), 2)
+    
     cv2.rectangle(frame, (50, 50), (250, 250), (255, 255, 255), 2)
-    # rectangle for computer to play
-    #cv2.rectangle(frame, (800, 100), (1200, 500), (255, 255, 255), 2)
-
+    
     # extract the region of image within the user rectangle
     roi = frame[50:250, 50:250]
     img = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
     img = cv2.resize(img, (227, 227))
 
-    # predict the move made
+    # predict the sign made
     pred = model.predict(np.array([img]))
     sign_code = np.argmax(pred[0])
     sign_name = mapper(sign_code)
