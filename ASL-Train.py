@@ -214,3 +214,24 @@ def Squeeze_Net(include_top=True, weights='imagenet',
                               'your Keras config '
                               'at ~/.keras/keras.json.')
     return model
+
+model = Sequential([
+        Squeeze_Net(input_shape=(227, 227, 3), include_top=False),
+        Dropout(0.5),
+        Convolution2D(NUM_CLASSES, (1, 1), padding='valid'),
+        Activation('relu'),
+        GlobalAveragePooling2D(),
+        Activation('softmax')
+    ])
+
+model.compile(
+    optimizer=Adam(lr=0.0001),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# start training
+model.fit(np.array(data), np.array(labels), epochs=10)
+
+# save the model for later use
+model.save("asl-model.h5")
