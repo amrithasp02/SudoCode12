@@ -67,9 +67,11 @@ while True:
     if k == ord('q'):
         break
     #putting identified text into a text file
-    f=open("output.txt", mode='w', encoding='utf-8')
-    if text_msg != 'none':
-        f.write(text_msg)
+    def text_add():
+        f=open("output.txt", mode='w', encoding='utf-8')
+        if text_msg != 'none':
+            f.write(text_msg)
+    text_add()
         
 f.close()
 cap.release()
