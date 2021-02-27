@@ -69,7 +69,51 @@ while True:
     k = cv2.waitKey(10)
     if k == ord('q'):
         break
-
+    #putting identified text into a text file
+    f=open("output.txt", mode='w', encoding='utf-8')
+    if text_msg != 'none':
+        f.write(text_msg)
+        
+f.close()
 cap.release()
 cv2.destroyAllWindows()
 
+file = open('output.txt')
+l = file.readlines()
+
+# filtering through the output message
+
+print(l)
+f2 = open('output_modified.txt', mode='w', encoding='utf-8')
+lst = []
+for i in l[0]:
+    lst.append(i)
+print(lst)
+lst2 = []
+c = 0
+for i in range(len(lst)):
+    if i == 0:
+        sign_prev = ''
+    else:
+        sign_prev = lst[i-1]
+    sign_present = lst[i]
+    if sign_present == sign_prev:
+        c += 1
+        if c>8:
+            if sign_present not in lst2:
+                lst2.append(sign_present)
+        else:
+            continue
+    else:
+        c = 0
+        continue
+print(lst2)
+
+msg = ''
+for i in lst2:
+    msg+=i
+f2.write(msg)
+        
+f2.close()
+
+#final message stored in output_modified.txt
