@@ -8,6 +8,8 @@ In this project we aim to create an tool which can read American Sign Language(A
 3)Enjoy translating  
 
 ---
+dataset used: https://www.kaggle.com/grassknoted/asl-alphabet
+---
 This repo is a submission for SpaceJam
 Team Name:SudoCode
 Team Memebers:Amritha S P, Anant G, Amanpreet P
